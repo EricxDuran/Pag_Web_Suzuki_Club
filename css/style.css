@@ -1,0 +1,322 @@
+/* css/style.css */
+
+/* 1. IMPORTAR FUENTES */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@400;700&display=swap');
+
+/* 2. NUEVA PALETA (Desierto / Racing) */
+:root {
+    --primary: #c5a065;      /* Arena / Oro Viejo (Color principal) */
+    --primary-dark: #a3824a; /* Arena oscurecido */
+    --accent: #d62828;       /* Rojo Racing (Para destacar) */
+    --dark: #111111;         /* Negro Puro (Logo) */
+    --light: #f8f5f2;        /* Blanco roto (tinte arena muy suave) */
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 3. BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--light);
+    color: var(--dark);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* 4. CABECERA */
+header {
+    background-color: var(--dark);
+    color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    border-bottom: 4px solid var(--accent); /* Línea Roja Racing */
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--white); }
+.logo span { color: var(--accent); } /* "Team" en rojo */
+
+.nav-links { display: flex; gap: 25px; align-items: center; }
+.nav-links a { color: #ccc; font-size: 0.95rem; font-weight: 500; }
+.nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+/* Botones de Idioma */
+.lang-switch {
+    display: flex; gap: 10px; border-left: 1px solid #444;
+    padding-left: 20px; margin-left: 10px;
+}
+.lang-active { color: var(--primary) !important; }
+
+/* 5. HERO (Portada Actualizada) */
+.hero {
+    /* AQUÍ ESTÁ TU IMAGEN DE PORTADA */
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../img/portada.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 60vh; /* Un poco más bajito para ver el tablón rápido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+    border-bottom: 3px solid var(--accent); /* Subrayado rojo */
+    display: inline-block;
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    background-color: var(--accent); /* Botón Rojo */
+    color: var(--white);
+    padding: 12px 30px;
+    border-radius: 0px; /* Bordes cuadrados más agresivos */
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.btn:hover { background-color: #b01f1f; }
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid var(--dark);
+    color: var(--dark);
+}
+.btn-secondary:hover { background-color: var(--dark); color: var(--white); }
+
+/* 6. NUEVO: TABLÓN DE NOVEDADES */
+.notice-board {
+    background: var(--white);
+    border: 2px solid var(--primary);
+    padding: 30px;
+    margin-top: -50px; /* Truco: Se sube encima de la foto */
+    margin-bottom: 40px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    position: relative;
+    z-index: 10;
+}
+
+.event-row {
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    align-items: center;
+}
+.event-row:last-child { border-bottom: none; }
+
+.event-date {
+    background-color: var(--dark);
+    color: var(--primary); /* Fecha dorada sobre negro */
+    padding: 10px;
+    text-align: center;
+    min-width: 80px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+.event-date span { display: block; font-size: 1.5rem; color: var(--white); }
+
+.event-info h4 { color: var(--accent); margin-bottom: 5px; font-size: 1.1rem; }
+.event-info p { font-size: 0.9rem; color: #666; }
+
+/* 7. CONTENIDO GENERAL */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px 20px; }
+.section-title { text-align: center; font-size: 2.5rem; margin: 40px 0; color: var(--dark); }
+
+/* Busca esto en tu css/style.css y sustitúyelo */
+
+.grid-3 {
+    display: grid;
+    /* Esto obliga a tener 3 columnas de igual tamaño siempre */
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 30px;
+}
+
+/* AÑADE ESTO DEBAJO PARA QUE EN EL MÓVIL SE VEA BIEN */
+/* Si la pantalla es menor de 768px (móviles/tablets verticales), ponemos 1 columna */
+@media (max-width: 768px) {
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Tarjetas */
+.card {
+    background: var(--white);
+    border-bottom: 4px solid var(--primary); /* Borde inferior arena */
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+}
+.card:hover { transform: translateY(-5px); border-bottom-color: var(--accent); }
+.card-img { height: 200px; background-size: cover; background-position: center; background-color: #ddd; }
+.card-body { padding: 20px; }
+.card-body h3 { margin-bottom: 10px; color: var(--dark); }
+.card-footer { padding: 15px 20px; background-color: #fafafa; border-top: 1px solid #eee; text-align: right; }
+.link-arrow { color: var(--accent); font-weight: bold; font-size: 0.9rem; }
+
+/* Footer */
+footer { background-color: var(--dark); color: #888; text-align: center; padding: 40px 20px; margin-top: auto; border-top: 5px solid var(--primary); }
+
+/* --- RESPONSIVE DESIGN (MÓVIL) --- */
+
+/* Estilos para el botón Hamburguesa */
+.menu-toggle {
+    display: none; /* Oculto en PC */
+}
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. NAVEGACIÓN */
+    .menu-toggle {
+        display: block;
+        cursor: pointer;
+    }
+    
+    .menu-toggle .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background: var(--white);
+    }
+
+    /* Animación al hacer click (se convierte en X) */
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .nav-links {
+        position: fixed;
+        top: 70px; /* Altura del header */
+        left: -100%; /* Escondido a la izquierda */
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 40px;
+        transition: 0.4s;
+        border-top: 1px solid #333;
+    }
+
+    .nav-links.active {
+        left: 0; /* Aparece */
+    }
+
+    .nav-links a {
+        margin: 15px 0;
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .lang-switch {
+        border-left: none;
+        padding-left: 0;
+        margin: 20px 0;
+        border-top: 1px solid #444;
+        padding-top: 20px;
+        width: 50%;
+        justify-content: center;
+    }
+
+    /* 2. TEXTOS Y CONTENEDORES */
+    .hero h1 { font-size: 2.2rem; } /* Título más pequeño */
+    .section-title { font-size: 2rem; }
+    .container { padding: 0 15px 40px 15px; } /* Menos margen lateral */
+
+    /* 3. GRID (Todo a 1 columna) */
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    /* 4. EVENTOS (En el tablón) */
+    .event-row {
+        flex-direction: column; /* Fecha arriba, info abajo */
+        text-align: center;
+        gap: 10px;
+    }
+    .event-date { width: 100%; margin-bottom: 5px; }
+
+    /* 5. FORMULARIOS */
+    input, textarea, select { font-size: 16px; } /* Evita zoom automático en iPhone */
+    
+    /* 6. TABLAS (ADMIN) */
+    /* Esto hace que las tablas tengan scroll horizontal si no caben */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+  /* LETRERO PROMO LATERAL INCLINADO */
+.promo-banner {
+    position: absolute;
+    top: 20%;
+    right: -300px; /* Escondido fuera de la pantalla */
+    background: #e70000; /* Rojo puro */
+    color: white;
+    padding: 15px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    border: 2px dashed #fff; /* Estilo cupón */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    z-index: 100;
+    max-width: 260px;
+    text-align: center;
+    opacity: 0;
+    /* Animación de entrada con rebote */
+    animation: entraPegatina 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
+}
+
+.promo-banner a { 
+    color: #ffeb3b; 
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+    font-size: 1.1rem;
+}
+
+@keyframes entraPegatina {
+    0% { right: -300px; transform: rotate(45deg) scale(0.5); opacity: 0; }
+    100% { right: 20px; transform: rotate(8deg) scale(1); opacity: 1; } /* Termina inclinado a la derecha */
+}
+
+/* Ajuste en móvil para que no se salga de la pantalla */
+@media screen and (max-width: 768px) {
+    @keyframes entraPegatina {
+        0% { right: -300px; transform: rotate(45deg) scale(0.5); opacity: 0; }
+        100% { right: 10px; transform: rotate(5deg) scale(0.9); opacity: 1; }
+    }
+}
